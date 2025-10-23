@@ -1,0 +1,19 @@
+Architecture Decision Record: FocusTasks App
+1. State Management: Closure-Based Store
+Decision: We will use a factory function (`createStore`) that leverages a closure to encapsulate the application state (`tasks` array). All state mutations will occur through a well-defined API (`add`, `toggle`, `remove`).
+Justification:
+•	Encapsulation: Meets the requirement of "no global mutable state." The `tasks` array is private and cannot be accessed or modified directly from outside the store, preventing accidental mutations.
+•	Testability: The store is a self-contained unit. Its behavior is predictable and can be easily tested in isolation.
+•	Persistence: Provides a natural place to centralize persistence logic (`_persist` and `_hydrate` functions) that interacts with `localStorage`.
+2. Event Handling: Event Delegation
+Decision: We will use a single event listener on a parent element (`<main>`) to handle all clicks for toggling and removing tasks. The specific action and task ID will be determined using `event.target` and `data-*` attributes.
+Justification:
+•	Performance: Attaching one event listener is more memory-efficient than attaching dozens or hundreds to individual list items, especially in a long list.
+•	Simplicity: It simplifies DOM manipulation. When we re-render the lists, we don't need to worry about re-attaching or cleaning up old event listeners. The single listener on the parent just works.
+•	Meets Requirements: Directly satisfies the constraint of using a "single delegated listener per area."
+3. Responsiveness: Mobile-First with Flexbox
+Decision: The layout will be built mobile-first (single column). A single media query at `min-width: 481px` will switch the `main` container's `flex-direction` from `column` to `row` to create the two-column view.
+Justification:
+•	Efficiency: This approach is simple and robust, satisfying the "maximum one media query" constraint perfectly.
+•	Maintainability: Flexbox provides a clean and declarative way to manage the layout without complex CSS. It's easy to understand and modify.
+•	Modern Practice: Mobile-first is a standard best practice for building responsive web applications.

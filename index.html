@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusTasks - 8076</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <h1>FocusTasks 8076</h1>
+    <div id="analytics" class="analytics-bar" aria-live="polite">
+      </div>
+  </header>
+
+  <main>
+    <section class="task-column" aria-labelledby="active-heading">
+      <h2 id="active-heading">Active</h2>
+      <form id="add-task-form">
+        <label for="new-task-title">Add task</label>
+        <div class="input-group">
+          <input type="text" id="new-task-title" placeholder="e.g., Start Coding" required>
+          <button type="submit">Add</button>
+        </div>
+        <p id="error-message" class="error" aria-live="assertive"></p>
+      </form>
+      <ul id="active-list" class="task-list">
+        </ul>
+    </section>
+
+    <section class="task-column" aria-labelledby="done-heading">
+      <h2 id="done-heading">Done</h2>
+      <ul id="done-list" class="task-list">
+        </ul>
+    </section>
+  </main>
+
+</body>
+</html>
